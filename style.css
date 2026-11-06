@@ -1,0 +1,12 @@
+@import url('https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;800&display=swap');
+
+body {
+    font-family: 'Cairo', sans-serif; /* خط عربي عصري ومناسب للمنصات */
+}
+
+/* تأثير بسيط عند إتمام التمرين */
+.completed-task {
+    text-decoration: line-through;
+    color: #9ca3af;
+    transition: all 0.3s ease;
+}
