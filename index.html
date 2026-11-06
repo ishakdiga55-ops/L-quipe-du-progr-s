@@ -4,92 +4,140 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>بوابة المتدربين | فريق اللياقة</title>
+    <!-- استدعاء Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="style.css">
 </head>
 <body class="bg-gray-50 font-sans">
 
-    <!-- شريط التنقل -->
-    <nav class="bg-blue-600 text-white p-4 shadow-md">
+    <!-- شريط التنقل العلوي -->
+    <nav class="bg-blue-600 text-white p-4 shadow-md sticky top-0 z-50">
         <div class="container mx-auto flex flex-wrap justify-between items-center">
             <h1 class="text-2xl font-bold">💪 منصة المتدربين</h1>
             
-            <button id="mobile-menu-btn" class="md:hidden focus:outline-none">
+            <!-- زر القائمة للهواتف -->
+            <button id="mobile-menu-btn" class="md:hidden focus:outline-none p-1 rounded hover:bg-blue-700">
                 <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path></svg>
             </button>
 
-            <ul id="nav-links" class="hidden md:flex w-full md:w-auto flex-col md:flex-row mt-4 md:mt-0 space-y-2 md:space-y-0 md:space-x-4 md:space-x-reverse">
-                <li><button id="link-home" class="nav-btn block w-full text-right hover:bg-blue-700 px-2 py-1 rounded transition">الرئيسية</button></li>
-                <li><button id="link-workouts" class="nav-btn block w-full text-right hover:bg-blue-700 px-2 py-1 rounded transition">جدول التمارين</button></li>
-                <li><button id="link-measurements" class="nav-btn block w-full text-right hover:bg-blue-700 px-2 py-1 rounded transition">القياسات</button></li>
+            <!-- روابط التنقل -->
+            <ul id="nav-links" class="hidden md:flex w-full md:w-auto flex-col md:flex-row mt-4 md:mt-0 space-y-2 md:space-y-0 md:space-x-4 md:space-x-reverse font-semibold">
+                <li><button id="link-home" class="nav-btn block w-full text-right hover:bg-blue-700 px-3 py-2 rounded transition">الرئيسية</button></li>
+                <li><button id="link-workouts" class="nav-btn block w-full text-right hover:bg-blue-700 px-3 py-2 rounded transition">جدول التمارين</button></li>
+                <li><button id="link-measurements" class="nav-btn block w-full text-right hover:bg-blue-700 px-3 py-2 rounded transition">القياسات</button></li>
             </ul>
         </div>
     </nav>
 
     <!-- المحتوى الرئيسي -->
-    <main class="container mx-auto mt-6 p-4">
+    <main class="container mx-auto mt-6 p-4 max-w-xl">
         
-        <!-- ================= نموذج تسجيل الدخول ================= -->
-        <div id="registration-form" class="bg-white rounded-lg shadow p-6 mb-6">
-            <h2 class="text-xl font-bold mb-4 border-b pb-2">📝 إعداد الملف الشخصي</h2>
+        <!-- ================= 1. نموذج إعداد الملف الشخصي ================= -->
+        <div id="registration-form" class="bg-white rounded-xl shadow-md p-6 mb-6">
+            <h2 class="text-xl font-bold mb-4 border-b pb-2 text-gray-800">📝 إعداد الملف الشخصي</h2>
             <form id="profile-form" class="space-y-4">
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-                    <input type="text" id="user-name" placeholder="الاسم الكامل" class="border p-2 rounded w-full focus:ring-2 focus:ring-blue-500 outline-none">
-                    <input type="tel" id="user-phone" placeholder="رقم الهاتف" class="border p-2 rounded w-full focus:ring-2 focus:ring-blue-500 outline-none">
-                    <input type="number" id="user-weight" placeholder="الوزن الحالي (كغ)" class="border p-2 rounded w-full focus:ring-2 focus:ring-blue-500 outline-none">
-                    <input type="date" id="start-date" class="border p-2 rounded w-full focus:ring-2 focus:ring-blue-500 outline-none">
+                <div>
+                    <label class="block mb-1 text-sm font-semibold text-gray-700">الاسم الكامل</label>
+                    <input type="text" id="user-name" placeholder="مثال: إسحاق" class="border p-2.5 rounded-lg w-full focus:ring-2 focus:ring-blue-500 outline-none">
                 </div>
                 <div>
-                    <label class="block mb-2 text-gray-700 font-semibold">صورة شخصية (اختياري)</label>
-                    <input type="file" id="user-image" accept="image/*" class="border p-2 rounded w-full">
+                    <label class="block mb-1 text-sm font-semibold text-gray-700">رقم الهاتف</label>
+                    <input type="tel" id="user-phone" placeholder="06XXXXXXXX" class="border p-2.5 rounded-lg w-full focus:ring-2 focus:ring-blue-500 outline-none">
                 </div>
-                <button type="button" id="save-btn" class="bg-blue-600 text-white px-6 py-2 rounded hover:bg-blue-700 transition w-full font-bold">حفظ البيانات والانطلاق 🚀</button>
+                <div class="grid grid-cols-2 gap-3">
+                    <div>
+                        <label class="block mb-1 text-sm font-semibold text-gray-700">الوزن الحالي (كغ)</label>
+                        <input type="number" id="user-weight" placeholder="80" class="border p-2.5 rounded-lg w-full focus:ring-2 focus:ring-blue-500 outline-none">
+                    </div>
+                    <div>
+                        <label class="block mb-1 text-sm font-semibold text-gray-700">يوم البدء مع الفريق</label>
+                        <input type="date" id="start-date" class="border p-2.5 rounded-lg w-full focus:ring-2 focus:ring-blue-500 outline-none">
+                    </div>
+                </div>
+                <div>
+                    <label class="block mb-1 text-sm font-semibold text-gray-700">صورة شخصية (اختياري)</label>
+                    <input type="file" id="user-image" accept="image/*" class="border p-2 rounded-lg w-full text-sm">
+                </div>
+                <button type="button" id="save-btn" class="bg-blue-600 text-white px-6 py-3 rounded-lg hover:bg-blue-700 transition w-full font-bold shadow-md mt-2">حفظ البيانات والانطلاق 🚀</button>
             </form>
         </div>
 
-        <!-- ================= الصفحات (مخفية بشكل افتراضي وتظهر عند الطلب) ================= -->
-        <div id="main-content" class="hidden">
+        <!-- ================= 2. المحتوى التفاعلي المبوب ================= -->
+        <div id="main-content" class="hidden space-y-6">
             
-            <!-- 1. الصفحة الرئيسية (البطاقة) -->
+            <!-- الصفحة الرئيسية: بطاقة المتدرب -->
             <div id="page-home" class="page-section">
-                <div class="bg-white rounded-lg shadow p-6 mb-6 flex flex-col sm:flex-row items-center gap-4">
-                    <img id="display-image" src="https://via.placeholder.com/100" alt="صورة المتدرب" class="w-24 h-24 rounded-full object-cover border-4 border-blue-500 shadow-sm">
-                    <div class="text-center sm:text-right">
-                        <h2 id="display-name" class="text-2xl font-bold text-gray-800">الاسم</h2>
-                        <p class="text-gray-600">📱 الهاتف: <span id="display-phone">---</span></p>
-                        <p class="text-gray-600">⚖️ الوزن المبدئي: <span id="display-weight">---</span> كغ</p>
-                        <p class="text-gray-600">📅 يوم البدء: <span id="display-date">---</span></p>
-                        <button id="edit-profile-btn" class="mt-2 text-sm text-blue-600 hover:underline">تعديل البيانات</button>
+                <div class="bg-white rounded-xl shadow-md p-6 flex flex-col items-center text-center">
+                    <img id="display-image" src="https://via.placeholder.com/120" alt="صورة المتدرب" class="w-28 h-28 rounded-full object-cover border-4 border-blue-500 shadow-sm mb-3">
+                    <h2 id="display-name" class="text-2xl font-bold text-gray-800 mb-2">الاسم</h2>
+                    
+                    <div class="w-full bg-gray-50 rounded-lg p-4 space-y-2 text-gray-700 text-sm font-semibold">
+                        <p class="flex justify-between border-b pb-1"><span>📱 رقم الهاتف:</span> <span id="display-phone" class="text-blue-600">---</span></p>
+                        <p class="flex justify-between border-b pb-1"><span>⚖️ الوزن الحالي:</span> <span><span id="display-weight" class="text-blue-600">---</span> كغ</span></p>
+                        <p class="flex justify-between"><span>📅 يوم البدء:</span> <span id="display-date" class="text-blue-600">---</span></p>
                     </div>
+
+                    <button id="edit-profile-btn" class="mt-4 text-sm text-blue-600 hover:text-blue-800 font-bold hover:underline">✏️ تعديل البيانات الشخصية</button>
                 </div>
             </div>
 
-            <!-- 2. صفحة التمارين -->
+            <!-- صفحة جدول التمارين المحدث -->
             <div id="page-workouts" class="page-section hidden">
-                <div class="bg-white rounded-lg shadow p-6">
-                    <h3 class="text-lg font-bold border-b pb-2 mb-4">🏋️ تمارين اليوم (الجزء العلوي)</h3>
+                <div class="bg-white rounded-xl shadow-md p-6">
+                    <h3 class="text-lg font-bold border-b pb-3 mb-4 text-gray-800 flex items-center gap-2">
+                        <span>📅</span> البرنامج الأسبوعي للتمارين
+                    </h3>
+                    
                     <ul id="workout-list" class="space-y-3">
-                        <li class="flex flex-col sm:flex-row justify-between sm:items-center bg-gray-100 p-4 rounded gap-3">
-                            <span>ضغط الصدر (Bench Press) - 3 جولات / 10 تكرارات</span>
-                            <button class="complete-btn bg-green-500 text-white px-4 py-2 rounded hover:bg-green-600 w-full sm:w-auto">إتمام</button>
+                        <!-- الأحد -->
+                        <li class="workout-card flex flex-col sm:flex-row justify-between sm:items-center bg-gray-50 border p-4 rounded-lg gap-3">
+                            <div>
+                                <span class="font-bold text-gray-800 block">الأحد: سيركوي (Circuit)</span>
+                                <span class="text-sm text-blue-600 font-semibold">⏱️ 18:00</span>
+                            </div>
+                            <button class="complete-btn bg-green-500 text-white px-5 py-2 rounded-lg hover:bg-green-600 font-bold transition w-full sm:w-auto">إتمام</button>
                         </li>
-                        <li class="flex flex-col sm:flex-row justify-between sm:items-center bg-gray-100 p-4 rounded gap-3">
-                            <span>سحب الظهر (Lat Pulldown) - 3 جولات / 12 تكرار</span>
-                            <button class="complete-btn bg-green-500 text-white px-4 py-2 rounded hover:bg-green-600 w-full sm:w-auto">إتمام</button>
+                        
+                        <!-- الثلاثاء -->
+                        <li class="workout-card flex flex-col sm:flex-row justify-between sm:items-center bg-gray-50 border p-4 rounded-lg gap-3">
+                            <div>
+                                <span class="font-bold text-gray-800 block">الثلاثاء: تمارين بطن (Abs)</span>
+                                <span class="text-sm text-blue-600 font-semibold">⏱️ 18:00</span>
+                            </div>
+                            <button class="complete-btn bg-green-500 text-white px-5 py-2 rounded-lg hover:bg-green-600 font-bold transition w-full sm:w-auto">إتمام</button>
+                        </li>
+                        
+                        <!-- الخميس -->
+                        <li class="workout-card flex flex-col sm:flex-row justify-between sm:items-center bg-gray-50 border p-4 rounded-lg gap-3">
+                            <div>
+                                <span class="font-bold text-gray-800 block">الخميس: تمارين أرجل (Legs)</span>
+                                <span class="text-sm text-blue-600 font-semibold">⏱️ 18:00</span>
+                            </div>
+                            <button class="complete-btn bg-green-500 text-white px-5 py-2 rounded-lg hover:bg-green-600 font-bold transition w-full sm:w-auto">إتمام</button>
+                        </li>
+                        
+                        <!-- الجمعة -->
+                        <li class="workout-card flex flex-col sm:flex-row justify-between sm:items-center bg-gray-50 border p-4 rounded-lg gap-3">
+                            <div>
+                                <span class="font-bold text-gray-800 block">الجمعة: مباراة كرة قدم ⚽</span>
+                                <span class="text-sm text-blue-600 font-semibold">⏱️ 17:00</span>
+                            </div>
+                            <button class="complete-btn bg-green-500 text-white px-5 py-2 rounded-lg hover:bg-green-600 font-bold transition w-full sm:w-auto">إتمام</button>
                         </li>
                     </ul>
                 </div>
             </div>
 
-            <!-- 3. صفحة القياسات -->
+            <!-- صفحة القياسات -->
             <div id="page-measurements" class="page-section hidden">
-                <div class="bg-white rounded-lg shadow p-6 mb-6 border-r-4 border-blue-500">
-                    <h3 class="text-lg font-bold mb-4">📏 تحديث قياسات اليوم</h3>
-                    <div class="flex gap-3">
-                        <input type="number" id="new-weight-input" placeholder="الوزن الحالي (كغ)" class="border p-2 rounded w-full focus:ring-2 focus:ring-blue-500 outline-none">
-                        <button id="save-new-weight-btn" class="bg-blue-600 text-white px-6 py-2 rounded hover:bg-blue-700 transition">حفظ</button>
+                <div class="bg-white rounded-xl shadow-md p-6 border-r-4 border-blue-500">
+                    <h3 class="text-lg font-bold mb-3 text-gray-800">📏 تحديث قياسات اليوم</h3>
+                    <p class="text-sm text-gray-500 mb-4">أدخل وزنك الجديد لتحديثه مباشرة في بطاقة المتدرب.</p>
+                    <div class="flex gap-2">
+                        <input type="number" id="new-weight-input" placeholder="الوزن الجديد (كغ)" class="border p-2.5 rounded-lg w-full focus:ring-2 focus:ring-blue-500 outline-none">
+                        <button id="save-new-weight-btn" class="bg-blue-600 text-white px-5 py-2.5 rounded-lg hover:bg-blue-700 font-bold transition whitespace-nowrap">تحديث</button>
                     </div>
-                    <p id="weight-success-msg" class="text-green-600 text-sm mt-3 hidden font-semibold">✅ تم حفظ وزنك بنجاح!</p>
+                    <p id="weight-success-msg" class="text-green-600 text-sm mt-3 hidden font-semibold">✅ تم تحديث الوزن بنجاح!</p>
                 </div>
             </div>
 
