@@ -4,125 +4,158 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>بوابة المتدربين | فريق اللياقة</title>
-    <!-- استدعاء Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="style.css">
 </head>
-<body class="bg-gray-50 font-sans">
+<body class="bg-slate-900 text-slate-200 font-sans antialiased selection:bg-blue-500 selection:text-white">
 
-    <!-- شريط التنقل العلوي -->
-    <nav class="bg-blue-600 text-white p-4 shadow-md sticky top-0 z-50">
-        <div class="container mx-auto flex flex-wrap justify-between items-center">
-            <h1 class="text-2xl font-bold">💪 منصة المتدربين</h1>
+    <!-- شريط التنقل (زجاجي داكن) -->
+    <nav class="bg-slate-900/80 backdrop-blur-md border-b border-slate-800 p-4 sticky top-0 z-50 shadow-lg">
+        <div class="container mx-auto flex flex-wrap justify-between items-center max-w-2xl">
+            <h1 class="text-2xl font-black text-transparent bg-clip-text bg-gradient-to-l from-blue-400 to-cyan-300 uppercase tracking-wider flex items-center gap-2">
+                <span class="text-blue-500">⚡</span> منصة المتدربين
+            </h1>
             
-            <!-- زر القائمة للهواتف -->
-            <button id="mobile-menu-btn" class="md:hidden focus:outline-none p-1 rounded hover:bg-blue-700">
+            <button id="mobile-menu-btn" class="md:hidden focus:outline-none p-2 rounded-lg bg-slate-800 text-cyan-400 hover:bg-slate-700 transition">
                 <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path></svg>
             </button>
 
-            <!-- روابط التنقل -->
-            <ul id="nav-links" class="hidden md:flex w-full md:w-auto flex-col md:flex-row mt-4 md:mt-0 space-y-2 md:space-y-0 md:space-x-4 md:space-x-reverse font-semibold">
-                <li><button id="link-home" class="nav-btn block w-full text-right hover:bg-blue-700 px-3 py-2 rounded transition">الرئيسية</button></li>
-                <li><button id="link-workouts" class="nav-btn block w-full text-right hover:bg-blue-700 px-3 py-2 rounded transition">جدول التمارين</button></li>
-                <li><button id="link-measurements" class="nav-btn block w-full text-right hover:bg-blue-700 px-3 py-2 rounded transition">القياسات</button></li>
+            <ul id="nav-links" class="hidden md:flex w-full md:w-auto flex-col md:flex-row mt-4 md:mt-0 space-y-2 md:space-y-0 md:space-x-2 md:space-x-reverse font-bold text-sm">
+                <li><button id="link-home" class="nav-btn block w-full text-right hover:bg-slate-800 text-slate-300 hover:text-cyan-400 px-4 py-2 rounded-lg transition-all">الرئيسية</button></li>
+                <li><button id="link-workouts" class="nav-btn block w-full text-right hover:bg-slate-800 text-slate-300 hover:text-cyan-400 px-4 py-2 rounded-lg transition-all">البرنامج</button></li>
+                <li><button id="link-measurements" class="nav-btn block w-full text-right hover:bg-slate-800 text-slate-300 hover:text-cyan-400 px-4 py-2 rounded-lg transition-all">القياسات</button></li>
             </ul>
         </div>
     </nav>
 
-    <!-- المحتوى الرئيسي -->
-    <main class="container mx-auto mt-6 p-4 max-w-xl">
+    <main class="container mx-auto mt-8 p-4 max-w-2xl">
         
-        <!-- ================= 1. نموذج إعداد الملف الشخصي ================= -->
-        <div id="registration-form" class="bg-white rounded-xl shadow-md p-6 mb-6">
-            <h2 class="text-xl font-bold mb-4 border-b pb-2 text-gray-800">📝 إعداد الملف الشخصي</h2>
-            <form id="profile-form" class="space-y-4">
+        <!-- ================= 1. نموذج إعداد الملف الشخصي (داكن) ================= -->
+        <div id="registration-form" class="bg-slate-800 rounded-2xl shadow-2xl border border-slate-700 p-6 md:p-8 mb-6 relative overflow-hidden">
+            <div class="absolute top-0 right-0 w-32 h-32 bg-blue-500/10 rounded-full blur-3xl"></div>
+            
+            <h2 class="text-2xl font-black mb-6 text-white flex items-center gap-2">
+                <span class="text-cyan-400">📝</span> إعداد ملف البطل
+            </h2>
+            
+            <form id="profile-form" class="space-y-5 relative z-10">
                 <div>
-                    <label class="block mb-1 text-sm font-semibold text-gray-700">الاسم الكامل</label>
-                    <input type="text" id="user-name" placeholder="مثال: إسحاق" class="border p-2.5 rounded-lg w-full focus:ring-2 focus:ring-blue-500 outline-none">
+                    <label class="block mb-1 text-sm font-semibold text-slate-400">الاسم الكامل</label>
+                    <input type="text" id="user-name" placeholder="مثال: إسحاق" class="bg-slate-900 border border-slate-700 text-white p-3 rounded-xl w-full focus:ring-2 focus:ring-cyan-500 outline-none transition">
                 </div>
                 <div>
-                    <label class="block mb-1 text-sm font-semibold text-gray-700">رقم الهاتف</label>
-                    <input type="tel" id="user-phone" placeholder="06XXXXXXXX" class="border p-2.5 rounded-lg w-full focus:ring-2 focus:ring-blue-500 outline-none">
+                    <label class="block mb-1 text-sm font-semibold text-slate-400">رقم الهاتف</label>
+                    <input type="tel" id="user-phone" placeholder="06XXXXXXXX" class="bg-slate-900 border border-slate-700 text-white p-3 rounded-xl w-full focus:ring-2 focus:ring-cyan-500 outline-none transition">
                 </div>
-                <div class="grid grid-cols-2 gap-3">
+                <div class="grid grid-cols-2 gap-4">
                     <div>
-                        <label class="block mb-1 text-sm font-semibold text-gray-700">الوزن الحالي (كغ)</label>
-                        <input type="number" id="user-weight" placeholder="80" class="border p-2.5 rounded-lg w-full focus:ring-2 focus:ring-blue-500 outline-none">
+                        <label class="block mb-1 text-sm font-semibold text-slate-400">الوزن (كغ)</label>
+                        <input type="number" id="user-weight" placeholder="80" class="bg-slate-900 border border-slate-700 text-white p-3 rounded-xl w-full focus:ring-2 focus:ring-cyan-500 outline-none transition">
                     </div>
                     <div>
-                        <label class="block mb-1 text-sm font-semibold text-gray-700">يوم البدء مع الفريق</label>
-                        <input type="date" id="start-date" class="border p-2.5 rounded-lg w-full focus:ring-2 focus:ring-blue-500 outline-none">
+                        <label class="block mb-1 text-sm font-semibold text-slate-400">تاريخ البدء</label>
+                        <input type="date" id="start-date" class="bg-slate-900 border border-slate-700 text-slate-300 p-3 rounded-xl w-full focus:ring-2 focus:ring-cyan-500 outline-none transition">
                     </div>
                 </div>
                 <div>
-                    <label class="block mb-1 text-sm font-semibold text-gray-700">صورة شخصية (اختياري)</label>
-                    <input type="file" id="user-image" accept="image/*" class="border p-2 rounded-lg w-full text-sm">
+                    <label class="block mb-1 text-sm font-semibold text-slate-400">صورة شخصية</label>
+                    <input type="file" id="user-image" accept="image/*" class="bg-slate-900 border border-slate-700 text-slate-400 p-2.5 rounded-xl w-full text-sm file:mr-4 file:py-2 file:px-4 file:rounded-lg file:border-0 file:text-sm file:font-semibold file:bg-cyan-500/20 file:text-cyan-400 hover:file:bg-cyan-500/30 transition cursor-pointer">
                 </div>
-                <button type="button" id="save-btn" class="bg-blue-600 text-white px-6 py-3 rounded-lg hover:bg-blue-700 transition w-full font-bold shadow-md mt-2">حفظ البيانات والانطلاق 🚀</button>
+                <button type="button" id="save-btn" class="bg-gradient-to-r from-blue-600 to-cyan-500 text-white px-6 py-4 rounded-xl hover:from-blue-500 hover:to-cyan-400 transition-all w-full font-black text-lg shadow-[0_0_20px_rgba(6,182,212,0.3)] mt-4">حفظ والانطلاق 🚀</button>
             </form>
         </div>
 
-        <!-- ================= 2. المحتوى التفاعلي المبوب ================= -->
-        <div id="main-content" class="hidden space-y-6">
+        <!-- ================= 2. المحتوى التفاعلي ================= -->
+        <div id="main-content" class="hidden space-y-8">
             
-            <!-- الصفحة الرئيسية: بطاقة المتدرب -->
+            <!-- الصفحة الرئيسية: بطاقة رياضية احترافية -->
             <div id="page-home" class="page-section">
-                <div class="bg-white rounded-xl shadow-md p-6 flex flex-col items-center text-center">
-                    <img id="display-image" src="https://via.placeholder.com/120" alt="صورة المتدرب" class="w-28 h-28 rounded-full object-cover border-4 border-blue-500 shadow-sm mb-3">
-                    <h2 id="display-name" class="text-2xl font-bold text-gray-800 mb-2">الاسم</h2>
+                <div class="bg-gradient-to-br from-slate-800 to-slate-900 rounded-3xl shadow-2xl border border-slate-700 p-6 md:p-8 relative overflow-hidden flex flex-col items-center">
                     
-                    <div class="w-full bg-gray-50 rounded-lg p-4 space-y-2 text-gray-700 text-sm font-semibold">
-                        <p class="flex justify-between border-b pb-1"><span>📱 رقم الهاتف:</span> <span id="display-phone" class="text-blue-600">---</span></p>
-                        <p class="flex justify-between border-b pb-1"><span>⚖️ الوزن الحالي:</span> <span><span id="display-weight" class="text-blue-600">---</span> كغ</span></p>
-                        <p class="flex justify-between"><span>📅 يوم البدء:</span> <span id="display-date" class="text-blue-600">---</span></p>
+                    <!-- تأثيرات إضاءة في الخلفية -->
+                    <div class="absolute -top-10 -right-10 w-40 h-40 bg-blue-500 rounded-full mix-blend-screen filter blur-[60px] opacity-30"></div>
+                    <div class="absolute -bottom-10 -left-10 w-40 h-40 bg-cyan-500 rounded-full mix-blend-screen filter blur-[60px] opacity-20"></div>
+
+                    <!-- الصورة والاسم -->
+                    <div class="relative z-10 flex flex-col items-center mb-8 mt-4">
+                        <div class="relative">
+                            <img id="display-image" src="https://via.placeholder.com/150" alt="صورة المتدرب" class="w-32 h-32 md:w-40 md:h-40 rounded-full object-cover border-4 border-slate-900 ring-4 ring-cyan-500/80 shadow-[0_0_30px_rgba(6,182,212,0.4)] mb-5">
+                            <span class="absolute bottom-4 right-0 bg-slate-900 text-cyan-400 text-xs font-black px-3 py-1 rounded-full border border-cyan-500 shadow-[0_0_10px_rgba(6,182,212,0.5)] tracking-widest">PRO</span>
+                        </div>
+                        <h2 id="display-name" class="text-3xl md:text-4xl font-black text-white tracking-wide mb-1 uppercase drop-shadow-md">الاسم</h2>
+                        <p class="text-cyan-400 font-bold tracking-widest text-sm">عضو الفريق 🏆</p>
+                    </div>
+                    
+                    <!-- شبكة الإحصائيات (Widgets) -->
+                    <div class="grid grid-cols-2 gap-4 w-full relative z-10 mb-8">
+                        <div class="bg-slate-900/60 backdrop-blur-sm rounded-2xl p-4 md:p-5 border border-slate-700/50 flex flex-col items-center justify-center transform hover:scale-105 transition duration-300">
+                            <span class="text-slate-400 text-xs font-bold mb-2 tracking-wider">الوزن الحالي</span>
+                            <div class="flex items-baseline gap-1">
+                                <span id="display-weight" class="text-3xl md:text-4xl font-black text-white drop-shadow-md">---</span>
+                                <span class="text-sm font-bold text-cyan-500">كغ</span>
+                            </div>
+                        </div>
+                        
+                        <div class="bg-slate-900/60 backdrop-blur-sm rounded-2xl p-4 md:p-5 border border-slate-700/50 flex flex-col items-center justify-center transform hover:scale-105 transition duration-300">
+                            <span class="text-slate-400 text-xs font-bold mb-2 tracking-wider">تاريخ الانضمام</span>
+                            <span id="display-date" class="text-xl md:text-2xl font-black text-white drop-shadow-md mt-1">---</span>
+                        </div>
+
+                        <div class="bg-slate-900/60 backdrop-blur-sm rounded-2xl p-4 border border-slate-700/50 flex flex-col items-center justify-center col-span-2">
+                            <span class="text-slate-400 text-xs font-bold mb-1 tracking-wider">رقم الهاتف</span>
+                            <span id="display-phone" class="text-xl font-bold text-cyan-400 tracking-widest mt-1">---</span>
+                        </div>
                     </div>
 
-                    <button id="edit-profile-btn" class="mt-4 text-sm text-blue-600 hover:text-blue-800 font-bold hover:underline">✏️ تعديل البيانات الشخصية</button>
+                    <button id="edit-profile-btn" class="relative z-10 w-full bg-slate-900/50 border border-cyan-500/50 text-cyan-400 hover:bg-cyan-500 hover:text-slate-900 font-black py-3.5 rounded-xl transition-all duration-300 shadow-[0_0_15px_rgba(6,182,212,0.15)] hover:shadow-[0_0_20px_rgba(6,182,212,0.4)] flex justify-center items-center gap-2">
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z"></path></svg>
+                        تحديث البيانات
+                    </button>
                 </div>
             </div>
 
             <!-- صفحة جدول التمارين المحدث -->
             <div id="page-workouts" class="page-section hidden">
-                <div class="bg-white rounded-xl shadow-md p-6">
-                    <h3 class="text-lg font-bold border-b pb-3 mb-4 text-gray-800 flex items-center gap-2">
-                        <span>📅</span> البرنامج الأسبوعي للتمارين
+                <div class="bg-slate-800 rounded-3xl shadow-2xl border border-slate-700 p-6">
+                    <h3 class="text-xl font-black border-b border-slate-700 pb-4 mb-6 text-white flex items-center gap-3">
+                        <span class="bg-cyan-500/20 text-cyan-400 p-2 rounded-lg">📅</span> البرنامج الأسبوعي
                     </h3>
                     
-                    <ul id="workout-list" class="space-y-3">
-                        <!-- الأحد -->
-                        <li class="workout-card flex flex-col sm:flex-row justify-between sm:items-center bg-gray-50 border p-4 rounded-lg gap-3">
+                    <ul id="workout-list" class="space-y-4">
+                        <li class="workout-card flex flex-col sm:flex-row justify-between sm:items-center bg-slate-900 border border-slate-700 p-5 rounded-2xl gap-4 hover:border-cyan-500/50 transition duration-300 relative overflow-hidden group">
+                            <div class="absolute left-0 top-0 bottom-0 w-1 bg-gradient-to-b from-cyan-400 to-blue-600"></div>
                             <div>
-                                <span class="font-bold text-gray-800 block">الأحد: سيركوي (Circuit)</span>
-                                <span class="text-sm text-blue-600 font-semibold">⏱️ 18:00</span>
+                                <span class="font-bold text-white block text-lg mb-1">الأحد: سيركوي (Circuit)</span>
+                                <span class="text-sm bg-slate-800 text-cyan-400 px-3 py-1 rounded-md font-bold inline-block border border-slate-700">⏱️ 18:00</span>
                             </div>
-                            <button class="complete-btn bg-green-500 text-white px-5 py-2 rounded-lg hover:bg-green-600 font-bold transition w-full sm:w-auto">إتمام</button>
+                            <button class="complete-btn bg-green-500 text-slate-900 px-6 py-2.5 rounded-xl hover:bg-green-400 font-black transition-all w-full sm:w-auto shadow-[0_0_15px_rgba(34,197,94,0.3)]">إتمام</button>
                         </li>
                         
-                        <!-- الثلاثاء -->
-                        <li class="workout-card flex flex-col sm:flex-row justify-between sm:items-center bg-gray-50 border p-4 rounded-lg gap-3">
+                        <li class="workout-card flex flex-col sm:flex-row justify-between sm:items-center bg-slate-900 border border-slate-700 p-5 rounded-2xl gap-4 hover:border-cyan-500/50 transition duration-300 relative overflow-hidden">
+                            <div class="absolute left-0 top-0 bottom-0 w-1 bg-gradient-to-b from-cyan-400 to-blue-600"></div>
                             <div>
-                                <span class="font-bold text-gray-800 block">الثلاثاء: تمارين بطن (Abs)</span>
-                                <span class="text-sm text-blue-600 font-semibold">⏱️ 18:00</span>
+                                <span class="font-bold text-white block text-lg mb-1">الثلاثاء: تمارين بطن (Abs)</span>
+                                <span class="text-sm bg-slate-800 text-cyan-400 px-3 py-1 rounded-md font-bold inline-block border border-slate-700">⏱️ 18:00</span>
                             </div>
-                            <button class="complete-btn bg-green-500 text-white px-5 py-2 rounded-lg hover:bg-green-600 font-bold transition w-full sm:w-auto">إتمام</button>
+                            <button class="complete-btn bg-green-500 text-slate-900 px-6 py-2.5 rounded-xl hover:bg-green-400 font-black transition-all w-full sm:w-auto shadow-[0_0_15px_rgba(34,197,94,0.3)]">إتمام</button>
                         </li>
                         
-                        <!-- الخميس -->
-                        <li class="workout-card flex flex-col sm:flex-row justify-between sm:items-center bg-gray-50 border p-4 rounded-lg gap-3">
+                        <li class="workout-card flex flex-col sm:flex-row justify-between sm:items-center bg-slate-900 border border-slate-700 p-5 rounded-2xl gap-4 hover:border-cyan-500/50 transition duration-300 relative overflow-hidden">
+                            <div class="absolute left-0 top-0 bottom-0 w-1 bg-gradient-to-b from-cyan-400 to-blue-600"></div>
                             <div>
-                                <span class="font-bold text-gray-800 block">الخميس: تمارين أرجل (Legs)</span>
-                                <span class="text-sm text-blue-600 font-semibold">⏱️ 18:00</span>
+                                <span class="font-bold text-white block text-lg mb-1">الخميس: تمارين أرجل (Legs)</span>
+                                <span class="text-sm bg-slate-800 text-cyan-400 px-3 py-1 rounded-md font-bold inline-block border border-slate-700">⏱️ 18:00</span>
                             </div>
-                            <button class="complete-btn bg-green-500 text-white px-5 py-2 rounded-lg hover:bg-green-600 font-bold transition w-full sm:w-auto">إتمام</button>
+                            <button class="complete-btn bg-green-500 text-slate-900 px-6 py-2.5 rounded-xl hover:bg-green-400 font-black transition-all w-full sm:w-auto shadow-[0_0_15px_rgba(34,197,94,0.3)]">إتمام</button>
                         </li>
                         
-                        <!-- الجمعة -->
-                        <li class="workout-card flex flex-col sm:flex-row justify-between sm:items-center bg-gray-50 border p-4 rounded-lg gap-3">
+                        <li class="workout-card flex flex-col sm:flex-row justify-between sm:items-center bg-slate-900 border border-slate-700 p-5 rounded-2xl gap-4 hover:border-cyan-500/50 transition duration-300 relative overflow-hidden">
+                            <div class="absolute left-0 top-0 bottom-0 w-1 bg-gradient-to-b from-cyan-400 to-blue-600"></div>
                             <div>
-                                <span class="font-bold text-gray-800 block">الجمعة: مباراة كرة قدم ⚽</span>
-                                <span class="text-sm text-blue-600 font-semibold">⏱️ 17:00</span>
+                                <span class="font-bold text-white block text-lg mb-1">الجمعة: مباراة كرة قدم ⚽</span>
+                                <span class="text-sm bg-slate-800 text-cyan-400 px-3 py-1 rounded-md font-bold inline-block border border-slate-700">⏱️ 17:00</span>
                             </div>
-                            <button class="complete-btn bg-green-500 text-white px-5 py-2 rounded-lg hover:bg-green-600 font-bold transition w-full sm:w-auto">إتمام</button>
+                            <button class="complete-btn bg-green-500 text-slate-900 px-6 py-2.5 rounded-xl hover:bg-green-400 font-black transition-all w-full sm:w-auto shadow-[0_0_15px_rgba(34,197,94,0.3)]">إتمام</button>
                         </li>
                     </ul>
                 </div>
@@ -130,14 +163,17 @@
 
             <!-- صفحة القياسات -->
             <div id="page-measurements" class="page-section hidden">
-                <div class="bg-white rounded-xl shadow-md p-6 border-r-4 border-blue-500">
-                    <h3 class="text-lg font-bold mb-3 text-gray-800">📏 تحديث قياسات اليوم</h3>
-                    <p class="text-sm text-gray-500 mb-4">أدخل وزنك الجديد لتحديثه مباشرة في بطاقة المتدرب.</p>
-                    <div class="flex gap-2">
-                        <input type="number" id="new-weight-input" placeholder="الوزن الجديد (كغ)" class="border p-2.5 rounded-lg w-full focus:ring-2 focus:ring-blue-500 outline-none">
-                        <button id="save-new-weight-btn" class="bg-blue-600 text-white px-5 py-2.5 rounded-lg hover:bg-blue-700 font-bold transition whitespace-nowrap">تحديث</button>
+                <div class="bg-slate-800 rounded-3xl shadow-2xl border border-slate-700 p-6 md:p-8 relative overflow-hidden">
+                    <div class="absolute top-0 right-0 w-32 h-32 bg-cyan-500/10 rounded-full blur-3xl"></div>
+                    <h3 class="text-xl font-black mb-3 text-white flex items-center gap-2">
+                        <span class="text-cyan-400">📏</span> تحديث الميزان
+                    </h3>
+                    <p class="text-sm text-slate-400 mb-6 font-semibold">تتبع تطورك.. أدخل وزنك الجديد لتحديثه مباشرة في بطاقتك.</p>
+                    <div class="flex flex-col sm:flex-row gap-3 relative z-10">
+                        <input type="number" id="new-weight-input" placeholder="الوزن الجديد (كغ)" class="bg-slate-900 border border-slate-700 text-white p-4 rounded-xl w-full focus:ring-2 focus:ring-cyan-500 outline-none transition text-center sm:text-right text-lg font-bold">
+                        <button id="save-new-weight-btn" class="bg-cyan-500 text-slate-900 px-8 py-4 rounded-xl hover:bg-cyan-400 font-black transition-all whitespace-nowrap shadow-[0_0_15px_rgba(6,182,212,0.3)]">تحديث الآن</button>
                     </div>
-                    <p id="weight-success-msg" class="text-green-600 text-sm mt-3 hidden font-semibold">✅ تم تحديث الوزن بنجاح!</p>
+                    <p id="weight-success-msg" class="text-green-400 bg-green-900/30 border border-green-800 p-3 rounded-lg text-sm mt-4 hidden font-bold text-center">✅ تم تحديث الوزن بنجاح! استمر يا بطل.</p>
                 </div>
             </div>
 
