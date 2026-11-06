@@ -11,11 +11,11 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     // 2. إدارة بيانات الملف الشخصي
-    const profileForm = document.getElementById('profile-form');
     const registrationSection = document.getElementById('registration-form');
     const profileCard = document.getElementById('profile-card');
     const workoutsSection = document.getElementById('workouts-section');
     const editProfileBtn = document.getElementById('edit-profile-btn');
+    const saveBtn = document.getElementById('save-btn');
 
     // دالة لعرض البيانات المحفوظة
     function loadProfile() {
@@ -23,44 +23,50 @@ document.addEventListener('DOMContentLoaded', () => {
         if (savedData) {
             const profile = JSON.parse(savedData);
             
-            // تعبئة البيانات في البطاقة
-            document.getElementById('display-name').innerText = profile.name;
-            document.getElementById('display-phone').innerText = profile.phone;
-            document.getElementById('display-weight').innerText = profile.weight;
-            document.getElementById('display-date').innerText = profile.date;
+            // تعبئة البيانات في الواجهة
+            document.getElementById('display-name').innerText = profile.name || 'بطل مجهول';
+            document.getElementById('display-phone').innerText = profile.phone || '---';
+            document.getElementById('display-weight').innerText = profile.weight || '---';
+            document.getElementById('display-date').innerText = profile.date || '---';
+            
             if(profile.image) {
                 document.getElementById('display-image').src = profile.image;
             }
 
-            // إخفاء نموذج الإدخال وإظهار الملف الشخصي والتمارين
+            // الانتقال للصفحة الرئيسية (إخفاء النموذج وإظهار البيانات)
             registrationSection.classList.add('hidden');
             profileCard.classList.remove('hidden');
             workoutsSection.classList.remove('hidden');
         }
     }
 
-    // التحقق من وجود بيانات عند تحميل الصفحة
+    // التحقق من وجود بيانات سابقة عند فتح الموقع
     loadProfile();
 
-    // حفظ البيانات عند الضغط على زر الحفظ
-    if(profileForm) {
-        profileForm.addEventListener('submit', (e) => {
-            e.preventDefault(); // منع إعادة تحميل الصفحة
-
+    // تشغيل الحفظ عند الضغط على زر "حفظ البيانات والانطلاق"
+    if(saveBtn) {
+        saveBtn.addEventListener('click', () => {
             const name = document.getElementById('user-name').value;
             const phone = document.getElementById('user-phone').value;
             const weight = document.getElementById('user-weight').value;
             const date = document.getElementById('start-date').value;
-            const imageFile = document.getElementById('user-image').files[0];
+            const imageInput = document.getElementById('user-image');
+            
+            // التحقق من إدخال الاسم كشرط أساسي
+            if(name.trim() === "") {
+                alert("الرجاء إدخال الاسم الكامل للبدء!");
+                return;
+            }
 
-            // دالة لحفظ البيانات (مع أو بدون صورة)
+            const imageFile = imageInput.files ? imageInput.files[0] : null;
+
             const saveData = (imageData) => {
                 const profile = { name, phone, weight, date, image: imageData };
                 localStorage.setItem('traineeProfile', JSON.stringify(profile));
-                loadProfile();
+                loadProfile(); 
             };
 
-            // معالجة الصورة في حال تم رفعها
+            // معالجة الصورة إن وجدت
             if (imageFile) {
                 const reader = new FileReader();
                 reader.onload = function(event) {
@@ -68,12 +74,12 @@ document.addEventListener('DOMContentLoaded', () => {
                 };
                 reader.readAsDataURL(imageFile);
             } else {
-                saveData(null); // حفظ بدون صورة
+                saveData(null);
             }
         });
     }
 
-    // زر تعديل البيانات
+    // زر التعديل لإعادة إظهار النموذج
     if(editProfileBtn) {
         editProfileBtn.addEventListener('click', () => {
             registrationSection.classList.remove('hidden');
@@ -82,7 +88,7 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // 3. برمجة أزرار التمارين
+    // 3. برمجة أزرار إتمام التمارين
     const completeButtons = document.querySelectorAll('.complete-btn');
     completeButtons.forEach(button => {
         button.addEventListener('click', function() {
@@ -92,9 +98,11 @@ document.addEventListener('DOMContentLoaded', () => {
             if (this.innerText === 'إتمام') {
                 this.innerText = 'تم الإنجاز ✅';
                 this.classList.replace('bg-green-500', 'bg-gray-400');
+                this.classList.replace('hover:bg-green-600', 'hover:bg-gray-500');
             } else {
                 this.innerText = 'إتمام';
                 this.classList.replace('bg-gray-400', 'bg-green-500');
+                this.classList.replace('hover:bg-gray-500', 'hover:bg-green-600');
             }
         });
     });
