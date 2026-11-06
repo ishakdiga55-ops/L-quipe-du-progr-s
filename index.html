@@ -4,12 +4,13 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>بوابة المتدربين | فريق اللياقة</title>
+    <!-- استدعاء Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="style.css">
 </head>
 <body class="bg-slate-900 text-slate-200 font-sans antialiased selection:bg-blue-500 selection:text-white">
 
-    <!-- شريط التنقل -->
+    <!-- شريط التنقل (زجاجي داكن) -->
     <nav class="bg-slate-900/80 backdrop-blur-md border-b border-slate-800 p-4 sticky top-0 z-50 shadow-lg">
         <div class="container mx-auto flex flex-wrap justify-between items-center max-w-2xl">
             <h1 class="text-2xl font-black text-transparent bg-clip-text bg-gradient-to-l from-blue-400 to-cyan-300 uppercase tracking-wider flex items-center gap-2">
@@ -24,7 +25,6 @@
                 <li><button id="link-home" class="nav-btn block w-full text-right hover:bg-slate-800 text-slate-300 hover:text-cyan-400 px-3 py-2 rounded-lg transition-all">الرئيسية</button></li>
                 <li><button id="link-workouts" class="nav-btn block w-full text-right hover:bg-slate-800 text-slate-300 hover:text-cyan-400 px-3 py-2 rounded-lg transition-all">البرنامج</button></li>
                 <li><button id="link-measurements" class="nav-btn block w-full text-right hover:bg-slate-800 text-slate-300 hover:text-cyan-400 px-3 py-2 rounded-lg transition-all">القياسات</button></li>
-                <!-- زر دخول المدرب -->
                 <li><button id="link-coach" class="nav-btn block w-full text-right bg-cyan-500/10 text-cyan-400 hover:bg-cyan-500 hover:text-slate-900 px-3 py-2 rounded-lg transition-all border border-cyan-500/30">المدرب 🛡️</button></li>
             </ul>
         </div>
@@ -63,9 +63,8 @@
 
         <div id="main-content" class="hidden space-y-8">
             
-            <!-- صفحة المتدرب (البطاقة الرئيسية) -->
+            <!-- صفحة المتدرب -->
             <div id="page-home" class="page-section">
-                <!-- (نفس كود البطاقة الرياضية السابق بدون تغيير) -->
                 <div class="bg-gradient-to-br from-slate-800 to-slate-900 rounded-3xl shadow-2xl border border-slate-700 p-6 md:p-8 relative overflow-hidden flex flex-col items-center">
                     <div class="relative z-10 flex flex-col items-center mb-8 mt-4">
                         <h2 id="display-name" class="text-3xl md:text-4xl font-black text-white tracking-wide mb-1 uppercase drop-shadow-md">الاسم</h2>
@@ -120,13 +119,12 @@
                 </div>
             </div>
 
-            <!-- ================= 3. صفحة المدرب (الجديدة) ================= -->
+            <!-- صفحة المدرب -->
             <div id="page-coach" class="page-section hidden">
-                <!-- بطاقة الإحصائيات -->
                 <div class="bg-gradient-to-r from-cyan-600 to-blue-700 rounded-3xl shadow-xl p-6 md:p-8 mb-6 flex justify-between items-center">
                     <div>
                         <h2 class="text-2xl font-black text-white mb-1">🛡️ لوحة المدرب</h2>
-                        <p class="text-cyan-200 font-semibold text-sm">إدارة أبطال الفريق</p>
+                        <p class="text-cyan-200 font-semibold text-sm">إدارة أبطال الفريق (متصل بالإنترنت 🌐)</p>
                     </div>
                     <div class="text-center bg-slate-900/30 p-4 rounded-2xl backdrop-blur-sm border border-white/10">
                         <span class="block text-slate-200 text-xs font-bold mb-1">إجمالي المتدربين</span>
@@ -134,14 +132,13 @@
                     </div>
                 </div>
 
-                <!-- قائمة المتدربين -->
                 <div class="bg-slate-800 rounded-3xl border border-slate-700 p-6">
                     <div class="flex justify-between items-center mb-6 border-b border-slate-700 pb-4">
                         <h3 class="text-lg font-black text-white">قائمة الأبطال</h3>
-                        <button id="add-new-trainee-btn" class="text-sm bg-slate-700 hover:bg-slate-600 text-white px-4 py-2 rounded-lg font-bold transition">➕ إضافة متدرب</button>
+                        <button id="add-new-trainee-btn" class="text-sm bg-slate-700 hover:bg-slate-600 text-white px-4 py-2 rounded-lg font-bold transition">➕ متدرب جديد</button>
                     </div>
                     <div id="trainees-list-container" class="space-y-3">
-                        <!-- سيتم حقن المتدربين هنا عبر الجافاسكريبت -->
+                        <p class="text-slate-500 text-center font-bold">جاري تحميل البيانات من السحابة...</p>
                     </div>
                 </div>
             </div>
@@ -149,7 +146,7 @@
         </div>
     </main>
 
-    <script src="app.js"></script>
+    <!-- تم التغيير إلى type="module" -->
+    <script type="module" src="app.js"></script>
 </body>
 </html>
-
