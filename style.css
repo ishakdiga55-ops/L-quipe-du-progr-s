@@ -1,17 +1,36 @@
-@import url('https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;900&display=swap');
 
 body {
     font-family: 'Cairo', sans-serif;
-    background-color: #f8fafc;
+    /* تحسين عرض الخطوط في الشاشات الداكنة */
+    -webkit-font-smoothing: antialiased; 
+    -moz-osx-font-smoothing: grayscale;
 }
 
-/* تأثير التمارين المكتملة */
+/* تأثير التمارين المكتملة في الوضع الداكن */
 .completed-workout {
-    opacity: 0.6;
-    background-color: #e2e8f0 !important;
+    opacity: 0.5;
+    background-color: #0f172a !important; /* لون slate-900 غامق */
+    border-color: #334155 !important;
+    filter: grayscale(0.8);
 }
 
 .completed-task {
     text-decoration: line-through;
-    color: #64748b;
+    color: #64748b; /* لون slate-500 */
+}
+
+/* شريط تمرير مخصص واحترافي */
+::-webkit-scrollbar {
+    width: 8px;
+}
+::-webkit-scrollbar-track {
+    background: #0f172a; 
+}
+::-webkit-scrollbar-thumb {
+    background: #334155; 
+    border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+    background: #06b6d4; /* لون cyan-500 */
 }
