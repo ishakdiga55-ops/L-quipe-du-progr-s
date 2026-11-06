@@ -10,7 +10,7 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // 2. التحكم في التنقل بين الأقسام (الصفحات)
+    // 2. التحكم في التنقل بين الأقسام
     const pageHome = document.getElementById('page-home');
     const pageWorkouts = document.getElementById('page-workouts');
     const pageMeasurements = document.getElementById('page-measurements');
@@ -21,22 +21,18 @@ document.addEventListener('DOMContentLoaded', () => {
     function showPage(pageToShow) {
         if (!pageToShow) return;
 
-        // إخفاء استمارة التسجيل وإظهار حاوية الموقع
         if (registrationSection) registrationSection.classList.add('hidden');
         if (mainContent) mainContent.classList.remove('hidden');
 
-        // إخفاء كل التبويبات وإظهار التبويب المختار
         allPages.forEach(p => { if (p) p.classList.add('hidden'); });
         pageToShow.classList.remove('hidden');
 
-        // إغلاق قائمة الهاتف بعد الضغط
         if (window.innerWidth < 768 && navLinks) {
             navLinks.classList.add('hidden');
             navLinks.classList.remove('flex');
         }
     }
 
-    // ربط روابط القائمة
     const linkHome = document.getElementById('link-home');
     const linkWorkouts = document.getElementById('link-workouts');
     const linkMeasurements = document.getElementById('link-measurements');
@@ -45,7 +41,7 @@ document.addEventListener('DOMContentLoaded', () => {
     if (linkWorkouts) linkWorkouts.addEventListener('click', () => showPage(pageWorkouts));
     if (linkMeasurements) linkMeasurements.addEventListener('click', () => showPage(pageMeasurements));
 
-    // 3. إدارة الملف الشخصي (الحفظ والعرض)
+    // 3. إدارة الملف الشخصي
     const saveBtn = document.getElementById('save-btn');
     const editProfileBtn = document.getElementById('edit-profile-btn');
 
@@ -63,10 +59,8 @@ document.addEventListener('DOMContentLoaded', () => {
                 document.getElementById('display-image').src = profile.image;
             }
 
-            // إظهار الواجهة الرئيسية افتراضياً
             showPage(pageHome);
         } else {
-            // أول مرة: إظهار استمارة التسجيل فقط
             if (registrationSection) registrationSection.classList.remove('hidden');
             if (mainContent) mainContent.classList.add('hidden');
         }
@@ -74,7 +68,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
     loadProfile();
 
-    // حفظ البيانات عند النقر على الزر
     if (saveBtn) {
         saveBtn.addEventListener('click', () => {
             const name = document.getElementById('user-name').value.trim();
@@ -108,7 +101,6 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // زر تعديل البيانات
     if (editProfileBtn) {
         editProfileBtn.addEventListener('click', () => {
             const savedData = localStorage.getItem('traineeProfile');
@@ -124,24 +116,28 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // 4. أزرار إتمام التمارين الأسبوعية
+    // 4. أزرار إتمام التمارين (محدثة للوضع الداكن)
     const completeBtns = document.querySelectorAll('.complete-btn');
     completeBtns.forEach(btn => {
         btn.addEventListener('click', function() {
             const card = this.closest('li');
-            const title = card.querySelector('div');
+            const title = card.querySelector('div span:first-child'); // استهداف نص التمرين فقط
             
             card.classList.toggle('completed-workout');
             title.classList.toggle('completed-task');
 
             if (this.innerText === 'إتمام') {
                 this.innerText = 'تم الإنجاز ✅';
-                this.classList.replace('bg-green-500', 'bg-gray-500');
-                this.classList.replace('hover:bg-green-600', 'hover:bg-gray-600');
+                this.classList.replace('bg-green-500', 'bg-slate-700');
+                this.classList.replace('text-slate-900', 'text-slate-300');
+                this.classList.replace('hover:bg-green-400', 'hover:bg-slate-600');
+                this.classList.remove('shadow-[0_0_15px_rgba(34,197,94,0.3)]');
             } else {
                 this.innerText = 'إتمام';
-                this.classList.replace('bg-gray-500', 'bg-green-500');
-                this.classList.replace('hover:bg-gray-600', 'hover:bg-green-600');
+                this.classList.replace('bg-slate-700', 'bg-green-500');
+                this.classList.replace('text-slate-300', 'text-slate-900');
+                this.classList.replace('hover:bg-slate-600', 'hover:bg-green-400');
+                this.classList.add('shadow-[0_0_15px_rgba(34,197,94,0.3)]');
             }
         });
     });
