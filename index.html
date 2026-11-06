@@ -19,9 +19,9 @@
             </button>
 
             <ul id="nav-links" class="hidden md:flex w-full md:w-auto flex-col md:flex-row mt-4 md:mt-0 space-y-2 md:space-y-0 md:space-x-4 md:space-x-reverse">
-                <li><a href="#" class="block hover:bg-blue-700 px-2 py-1 rounded transition">الرئيسية</a></li>
-                <li><a href="#" class="block hover:bg-blue-700 px-2 py-1 rounded transition">جدول التمارين</a></li>
-                <li><a href="#" class="block hover:bg-blue-700 px-2 py-1 rounded transition">القياسات</a></li>
+                <li><button id="link-home" class="nav-btn block w-full text-right hover:bg-blue-700 px-2 py-1 rounded transition">الرئيسية</button></li>
+                <li><button id="link-workouts" class="nav-btn block w-full text-right hover:bg-blue-700 px-2 py-1 rounded transition">جدول التمارين</button></li>
+                <li><button id="link-measurements" class="nav-btn block w-full text-right hover:bg-blue-700 px-2 py-1 rounded transition">القياسات</button></li>
             </ul>
         </div>
     </nav>
@@ -29,7 +29,7 @@
     <!-- المحتوى الرئيسي -->
     <main class="container mx-auto mt-6 p-4">
         
-        <!-- قسم إدخال بيانات المتدرب -->
+        <!-- ================= نموذج تسجيل الدخول ================= -->
         <div id="registration-form" class="bg-white rounded-lg shadow p-6 mb-6">
             <h2 class="text-xl font-bold mb-4 border-b pb-2">📝 إعداد الملف الشخصي</h2>
             <form id="profile-form" class="space-y-4">
@@ -47,31 +47,52 @@
             </form>
         </div>
 
-        <!-- بطاقة الملف الشخصي -->
-        <div id="profile-card" class="bg-white rounded-lg shadow p-6 mb-6 hidden flex flex-col sm:flex-row items-center gap-4">
-            <img id="display-image" src="https://via.placeholder.com/100" alt="صورة المتدرب" class="w-24 h-24 rounded-full object-cover border-4 border-blue-500 shadow-sm">
-            <div class="text-center sm:text-right">
-                <h2 id="display-name" class="text-2xl font-bold text-gray-800">الاسم</h2>
-                <p class="text-gray-600">📱 الهاتف: <span id="display-phone">---</span></p>
-                <p class="text-gray-600">⚖️ الوزن المبدئي: <span id="display-weight">---</span> كغ</p>
-                <p class="text-gray-600">📅 يوم البدء: <span id="display-date">---</span></p>
-                <button id="edit-profile-btn" class="mt-2 text-sm text-blue-600 hover:underline">تعديل البيانات</button>
+        <!-- ================= الصفحات (مخفية بشكل افتراضي وتظهر عند الطلب) ================= -->
+        <div id="main-content" class="hidden">
+            
+            <!-- 1. الصفحة الرئيسية (البطاقة) -->
+            <div id="page-home" class="page-section">
+                <div class="bg-white rounded-lg shadow p-6 mb-6 flex flex-col sm:flex-row items-center gap-4">
+                    <img id="display-image" src="https://via.placeholder.com/100" alt="صورة المتدرب" class="w-24 h-24 rounded-full object-cover border-4 border-blue-500 shadow-sm">
+                    <div class="text-center sm:text-right">
+                        <h2 id="display-name" class="text-2xl font-bold text-gray-800">الاسم</h2>
+                        <p class="text-gray-600">📱 الهاتف: <span id="display-phone">---</span></p>
+                        <p class="text-gray-600">⚖️ الوزن المبدئي: <span id="display-weight">---</span> كغ</p>
+                        <p class="text-gray-600">📅 يوم البدء: <span id="display-date">---</span></p>
+                        <button id="edit-profile-btn" class="mt-2 text-sm text-blue-600 hover:underline">تعديل البيانات</button>
+                    </div>
+                </div>
             </div>
-        </div>
 
-        <!-- قسم التمارين -->
-        <div id="workouts-section" class="bg-white rounded-lg shadow p-6 hidden">
-            <h3 class="text-lg font-bold border-b pb-2 mb-4">🏋️ تمارين اليوم (الجزء العلوي)</h3>
-            <ul id="workout-list" class="space-y-3">
-                <li class="flex flex-col sm:flex-row justify-between sm:items-center bg-gray-100 p-4 rounded gap-3">
-                    <span>ضغط الصدر (Bench Press) - 3 جولات / 10 تكرارات</span>
-                    <button class="complete-btn bg-green-500 text-white px-4 py-2 rounded hover:bg-green-600 w-full sm:w-auto">إتمام</button>
-                </li>
-                <li class="flex flex-col sm:flex-row justify-between sm:items-center bg-gray-100 p-4 rounded gap-3">
-                    <span>سحب الظهر (Lat Pulldown) - 3 جولات / 12 تكرار</span>
-                    <button class="complete-btn bg-green-500 text-white px-4 py-2 rounded hover:bg-green-600 w-full sm:w-auto">إتمام</button>
-                </li>
-            </ul>
+            <!-- 2. صفحة التمارين -->
+            <div id="page-workouts" class="page-section hidden">
+                <div class="bg-white rounded-lg shadow p-6">
+                    <h3 class="text-lg font-bold border-b pb-2 mb-4">🏋️ تمارين اليوم (الجزء العلوي)</h3>
+                    <ul id="workout-list" class="space-y-3">
+                        <li class="flex flex-col sm:flex-row justify-between sm:items-center bg-gray-100 p-4 rounded gap-3">
+                            <span>ضغط الصدر (Bench Press) - 3 جولات / 10 تكرارات</span>
+                            <button class="complete-btn bg-green-500 text-white px-4 py-2 rounded hover:bg-green-600 w-full sm:w-auto">إتمام</button>
+                        </li>
+                        <li class="flex flex-col sm:flex-row justify-between sm:items-center bg-gray-100 p-4 rounded gap-3">
+                            <span>سحب الظهر (Lat Pulldown) - 3 جولات / 12 تكرار</span>
+                            <button class="complete-btn bg-green-500 text-white px-4 py-2 rounded hover:bg-green-600 w-full sm:w-auto">إتمام</button>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- 3. صفحة القياسات -->
+            <div id="page-measurements" class="page-section hidden">
+                <div class="bg-white rounded-lg shadow p-6 mb-6 border-r-4 border-blue-500">
+                    <h3 class="text-lg font-bold mb-4">📏 تحديث قياسات اليوم</h3>
+                    <div class="flex gap-3">
+                        <input type="number" id="new-weight-input" placeholder="الوزن الحالي (كغ)" class="border p-2 rounded w-full focus:ring-2 focus:ring-blue-500 outline-none">
+                        <button id="save-new-weight-btn" class="bg-blue-600 text-white px-6 py-2 rounded hover:bg-blue-700 transition">حفظ</button>
+                    </div>
+                    <p id="weight-success-msg" class="text-green-600 text-sm mt-3 hidden font-semibold">✅ تم حفظ وزنك بنجاح!</p>
+                </div>
+            </div>
+
         </div>
     </main>
 
