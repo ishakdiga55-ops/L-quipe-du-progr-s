@@ -29,25 +29,25 @@
     <!-- المحتوى الرئيسي -->
     <main class="container mx-auto mt-6 p-4">
         
-        <!-- ================= قسم إدخال بيانات المتدرب (جديد) ================= -->
+        <!-- قسم إدخال بيانات المتدرب -->
         <div id="registration-form" class="bg-white rounded-lg shadow p-6 mb-6">
             <h2 class="text-xl font-bold mb-4 border-b pb-2">📝 إعداد الملف الشخصي</h2>
             <form id="profile-form" class="space-y-4">
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-                    <input type="text" id="user-name" placeholder="الاسم الكامل" required class="border p-2 rounded w-full focus:ring-2 focus:ring-blue-500 outline-none">
-                    <input type="tel" id="user-phone" placeholder="رقم الهاتف" required class="border p-2 rounded w-full focus:ring-2 focus:ring-blue-500 outline-none">
-                    <input type="number" id="user-weight" placeholder="الوزن الحالي (كغ)" required class="border p-2 rounded w-full focus:ring-2 focus:ring-blue-500 outline-none">
-                    <input type="date" id="start-date" required class="border p-2 rounded w-full focus:ring-2 focus:ring-blue-500 outline-none">
+                    <input type="text" id="user-name" placeholder="الاسم الكامل" class="border p-2 rounded w-full focus:ring-2 focus:ring-blue-500 outline-none">
+                    <input type="tel" id="user-phone" placeholder="رقم الهاتف" class="border p-2 rounded w-full focus:ring-2 focus:ring-blue-500 outline-none">
+                    <input type="number" id="user-weight" placeholder="الوزن الحالي (كغ)" class="border p-2 rounded w-full focus:ring-2 focus:ring-blue-500 outline-none">
+                    <input type="date" id="start-date" class="border p-2 rounded w-full focus:ring-2 focus:ring-blue-500 outline-none">
                 </div>
                 <div>
                     <label class="block mb-2 text-gray-700 font-semibold">صورة شخصية (اختياري)</label>
                     <input type="file" id="user-image" accept="image/*" class="border p-2 rounded w-full">
                 </div>
-                <button type="submit" class="bg-blue-600 text-white px-6 py-2 rounded hover:bg-blue-700 transition w-full font-bold">حفظ البيانات والانطلاق 🚀</button>
+                <button type="button" id="save-btn" class="bg-blue-600 text-white px-6 py-2 rounded hover:bg-blue-700 transition w-full font-bold">حفظ البيانات والانطلاق 🚀</button>
             </form>
         </div>
 
-        <!-- ================= بطاقة الملف الشخصي (تظهر بعد الحفظ) ================= -->
+        <!-- بطاقة الملف الشخصي -->
         <div id="profile-card" class="bg-white rounded-lg shadow p-6 mb-6 hidden flex flex-col sm:flex-row items-center gap-4">
             <img id="display-image" src="https://via.placeholder.com/100" alt="صورة المتدرب" class="w-24 h-24 rounded-full object-cover border-4 border-blue-500 shadow-sm">
             <div class="text-center sm:text-right">
@@ -59,12 +59,16 @@
             </div>
         </div>
 
-        <!-- قسم التمارين (موجود مسبقاً) -->
+        <!-- قسم التمارين -->
         <div id="workouts-section" class="bg-white rounded-lg shadow p-6 hidden">
             <h3 class="text-lg font-bold border-b pb-2 mb-4">🏋️ تمارين اليوم (الجزء العلوي)</h3>
             <ul id="workout-list" class="space-y-3">
                 <li class="flex flex-col sm:flex-row justify-between sm:items-center bg-gray-100 p-4 rounded gap-3">
                     <span>ضغط الصدر (Bench Press) - 3 جولات / 10 تكرارات</span>
+                    <button class="complete-btn bg-green-500 text-white px-4 py-2 rounded hover:bg-green-600 w-full sm:w-auto">إتمام</button>
+                </li>
+                <li class="flex flex-col sm:flex-row justify-between sm:items-center bg-gray-100 p-4 rounded gap-3">
+                    <span>سحب الظهر (Lat Pulldown) - 3 جولات / 12 تكرار</span>
                     <button class="complete-btn bg-green-500 text-white px-4 py-2 rounded hover:bg-green-600 w-full sm:w-auto">إتمام</button>
                 </li>
             </ul>
